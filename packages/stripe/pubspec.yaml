@@ -16,7 +16,7 @@ flutter:
       ios:
         default_package: stripe_ios
       web:
-        default_package: stripe_web
+        default_package: flutter_stripe_web
 
 dependencies:
   flutter:
@@ -26,7 +26,7 @@ dependencies:
     path: ../stripe_android
   stripe_ios:
     path: ../stripe_ios
-  stripe_web:
+  flutter_stripe_web:
     path: ../stripe_web
   stripe_platform_interface:
     path: ../stripe_platform_interface
