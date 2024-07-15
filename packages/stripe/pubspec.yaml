@@ -26,6 +26,8 @@ dependencies:
     path: ../stripe_android
   stripe_ios:
     path: ../stripe_ios
+  stripe_web:
+    path: ../stripe_web
   stripe_platform_interface:
     path: ../stripe_platform_interface
 dev_dependencies:
