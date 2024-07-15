@@ -31,6 +31,7 @@ _$PaymentIntentImpl _$$PaymentIntentImplFromJson(Map<String, dynamic> json) =>
       mandateData: json['mandateData'] == null
           ? null
           : MandateData.fromJson(json['mandateData'] as Map<String, dynamic>),
+      latestCharge: json['latestCharge'] as String?,
     );
 
 Map<String, dynamic> _$$PaymentIntentImplToJson(_$PaymentIntentImpl instance) =>
@@ -52,6 +53,7 @@ Map<String, dynamic> _$$PaymentIntentImplToJson(_$PaymentIntentImpl instance) =>
       'nextAction': instance.nextAction?.toJson(),
       'shipping': instance.shipping?.toJson(),
       'mandateData': instance.mandateData?.toJson(),
+      'latestCharge': instance.latestCharge,
     };
 
 const _$PaymentIntentsStatusEnumMap = {
@@ -69,6 +71,7 @@ const _$CaptureMethodEnumMap = {
   CaptureMethod.Manual: 'Manual',
   CaptureMethod.Automatic: 'Automatic',
   CaptureMethod.AutomaticAsync: 'AutomaticAsync',
+  CaptureMethod.Unknown: 'Unknown',
 };
 
 const _$ConfirmationMethodEnumMap = {

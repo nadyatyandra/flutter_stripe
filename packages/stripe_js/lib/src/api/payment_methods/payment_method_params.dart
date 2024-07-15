@@ -203,10 +203,10 @@ class PaymentMethodData with _$PaymentMethodData {
   @JsonSerializable(explicitToJson: true)
   const factory PaymentMethodData({
     /// Billing information.
-    BillingDetails? billingDetails,
+    @JsonKey(name: 'billing_details') BillingDetails? billingDetails,
 
     /// Shipping details
-    ShippingDetails? shippingDetails,
+    @JsonKey(name: 'shipping_details') ShippingDetails? shippingDetails,
   }) = _PaymentMethodData;
 
   factory PaymentMethodData.fromJson(Map<String, dynamic> json) =>

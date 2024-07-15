@@ -18,7 +18,7 @@ enum CustomerSheetError { unknown, failed, canceled }
 class StripeError<T> with _$StripeError<T>, Exception {
   @JsonSerializable(explicitToJson: true)
   const factory StripeError({
-    required String message,
+    @Default('Unknown error') String message,
     @JsonKey(fromJson: _dataFromJson, toJson: _dataToJson) required T code,
   }) = _StripeErrorGeneric;
 
@@ -51,6 +51,7 @@ class LocalizedErrorMessage with _$LocalizedErrorMessage {
   @JsonSerializable(explicitToJson: true)
   const factory LocalizedErrorMessage({
     /// The error code for example Cancelled
+    @JsonKey(unknownEnumValue: FailureCode.Unknown)
     required FailureCode code,
 
     /// Localized error message if any
@@ -73,7 +74,7 @@ class LocalizedErrorMessage with _$LocalizedErrorMessage {
       _$LocalizedErrorMessageFromJson(json);
 }
 
-enum FailureCode { Failed, Canceled, Timeout }
+enum FailureCode { Failed, Canceled, Timeout, Unknown }
 
 class StripeConfigException implements Exception {
   const StripeConfigException(this.message);

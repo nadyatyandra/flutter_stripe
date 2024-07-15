@@ -94,11 +94,18 @@ abstract class StripePlatform extends PlatformInterface {
   Future<PaymentMethod> createGooglePayPaymentMethod(
       CreateGooglePayPaymentParams params);
 
+  @Deprecated('use the new method [CanAddCardToWalletParams] instead')
   Future<AddToWalletResult> canAddToWallet(String last4);
+
+  Future<CanAddCardToWalletResult> canAddCardToWallet(
+      CanAddCardToWalletParams params);
+
+  Future<IsCardInWalletResult> isCardInWallet(String cardLastFour);
 
   /// Check if either google pay or apple pay  is supported on device.
   Future<bool> isPlatformPaySupported({
     IsGooglePaySupportedParams? params,
+    PlatformPayWebPaymentRequestCreateOptions? paymentRequestOptions,
   });
 
   /// Start native Payment sheet to confirm setup intent
@@ -114,7 +121,7 @@ abstract class StripePlatform extends PlatformInterface {
   });
 
   /// Use native payment sheet to create payment method
-  Future<PaymentMethod> platformPayCreatePaymentMethod({
+  Future<PlatformPayPaymentMethod> platformPayCreatePaymentMethod({
     required PlatformPayPaymentMethodParams params,
     bool usesDeprecatedTokenFlow = false,
   });
@@ -188,6 +195,18 @@ abstract class StripePlatform extends PlatformInterface {
     FocusNode? focusNode,
     bool autofocus = false,
     bool dangerouslyUpdateFullCardDetails = false,
+  }) {
+    throw UnimplementedError();
+  }
+
+  Widget buildPaymentRequestButton({
+    Key? key,
+    required VoidCallback onPressed,
+    required PlatformPayWebPaymentRequestCreateOptions
+        paymentRequestCreateOptions,
+    BoxConstraints? constraints,
+    PlatformButtonType? type,
+    PlatformButtonStyle? style,
   }) {
     throw UnimplementedError();
   }

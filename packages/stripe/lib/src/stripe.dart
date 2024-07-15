@@ -33,7 +33,7 @@ class Stripe {
     return instance._publishableKey!;
   }
 
-  /// Whether or not to set the return url for Androdi as well
+  /// Whether or not to set the return url for Android as well
   static set setReturnUrlSchemeOnAndroid(bool? value) {
     if (value == instance._setReturnUrlSchemeOnAndroid) {
       return;
@@ -125,12 +125,16 @@ class Stripe {
   ///
   /// The [googlePay] param can be provided to check if platform pay is supported on
   /// Google Pay test env or if a payment method is required.
+  /// The [webPaymentRequestCreateOptions] param can be provided to confirm what
+  /// if any platform pay options are available on web.
   Future<bool> isPlatformPaySupported({
     IsGooglePaySupportedParams? googlePay,
+    PlatformPayWebPaymentRequestCreateOptions? webPaymentRequestCreateOptions,
   }) async {
     await _awaitForSettings();
-    final isSupported =
-        await _platform.isPlatformPaySupported(params: googlePay);
+    final isSupported = await _platform.isPlatformPaySupported(
+        params: googlePay,
+        paymentRequestOptions: webPaymentRequestCreateOptions);
 
     _isPlatformPaySupported ??= ValueNotifier(false);
     _isPlatformPaySupported?.value = isSupported;
@@ -144,7 +148,7 @@ class Stripe {
   /// Creating payment method does not return a token by default. Use `usesDeprecatedTokenFlow` instead.
   ///
   /// throws [StripeError] in case creating payment method is failing.
-  Future<PaymentMethod> createPlatformPayPaymentMethod({
+  Future<PlatformPayPaymentMethod> createPlatformPayPaymentMethod({
     required PlatformPayPaymentMethodParams params,
     bool usesDeprecatedTokenFlow = false,
   }) async {
@@ -599,8 +603,26 @@ class Stripe {
 
   /// check if a particular card can be provisioned with the current app
   /// on this particular device.
+  ///
+  /// This method is deprecated. Use [canAddCardToWallet] instead.
+  @Deprecated('Use [canAddCardToWallet] instead')
   Future<AddToWalletResult> canAddToWallet(String last4) async {
     return await _platform.canAddToWallet(last4);
+  }
+
+  /// check if a particular card can be provisioned with the current app
+  /// on this particular device.
+  /// Throws [StripeException] in case creating the token fails.
+  Future<CanAddCardToWalletResult> canAddCardToWallet(
+      CanAddCardToWalletParams params) async {
+    return await _platform.canAddCardToWallet(params);
+  }
+
+  /// check if a particular card can be provisioned with the current app
+  /// on this particular device.
+  /// Throws [StripeException] in case creating the token fails.
+  Future<IsCardInWalletResult> isCardInWallet(String cardLastFour) async {
+    return await _platform.isCardInWallet(cardLastFour);
   }
 
   /// Call the financial connections authentication flow in order to collect a US bank account to enhance payouts.
@@ -719,4 +741,5 @@ class Stripe {
 
   // Internal use only
   static final buildWebCard = _platform.buildCard;
+  static final buildPaymentRequestButton = _platform.buildPaymentRequestButton;
 }

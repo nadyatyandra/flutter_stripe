@@ -1,3 +1,4 @@
+export 'collect_bank_account_for_setup_options.dart';
 export 'confirm_card_setup_data.dart';
 export 'confirm_card_setup_options.dart';
 export 'confirm_sepa_debit_setup_data.dart';

@@ -113,6 +113,10 @@ declare namespace stripe {
             clientSecret: string,
             options?: ConfirmPaymentIntentWithoutElementsOptions,
         ): Promise<PaymentIntentResponse>;
+        collectBankAccountForSetup(
+            // clientSecret: string,
+            options: CollectBankAccountForSetupOptions,
+        ): Promise<SetupIntentResponse>;
     }
 
     type StripeRedirectResponse = never | {
@@ -222,7 +226,7 @@ declare namespace stripe {
         ip?: string;
         offline?: OfflineAcceptanceMandate;
         online?: OnlineAcceptanceMandate;
-        type?: 'online'| 'offline';
+        type?: 'online' | 'offline';
         user_agent?: string;
     }
 
@@ -586,7 +590,7 @@ declare namespace stripe {
          * Instead of payment_method, the ID of a Source may be passed in.
          * (Note that this is undocumented as of August 2019).
          */
-       source?: string;
+        source?: string;
     }
 
     /**
@@ -673,6 +677,20 @@ declare namespace stripe {
             billing_details: {
                 name: string,
                 email: string,
+            }
+        };
+    }
+
+    interface CollectBankAccountForSetupOptions {
+        clientSecret: string,
+
+        params: {
+            payment_method_type: string;
+
+            payment_method_data?: {
+                billing_details?: BillingDetails,
+
+                shipping_details?: ShippingDetails,
             }
         };
     }

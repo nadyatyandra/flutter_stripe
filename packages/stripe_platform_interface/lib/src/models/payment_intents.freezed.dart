@@ -12,7 +12,7 @@ part of 'payment_intents.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PaymentIntent _$PaymentIntentFromJson(Map<String, dynamic> json) {
   return _PaymentIntent.fromJson(json);
@@ -70,6 +70,11 @@ mixin _$PaymentIntent {
   /// Mandata data for this paymentintent.
   MandateData? get mandateData => throw _privateConstructorUsedError;
 
+  /// The latest charge created by this payment intent.
+  ///
+  /// This field is only available on stripe web.
+  String? get latestCharge => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PaymentIntentCopyWith<PaymentIntent> get copyWith =>
@@ -98,7 +103,8 @@ abstract class $PaymentIntentCopyWith<$Res> {
       String? canceledAt,
       NextAction? nextAction,
       ShippingDetails? shipping,
-      MandateData? mandateData});
+      MandateData? mandateData,
+      String? latestCharge});
 
   $NextActionCopyWith<$Res>? get nextAction;
   $ShippingDetailsCopyWith<$Res>? get shipping;
@@ -134,6 +140,7 @@ class _$PaymentIntentCopyWithImpl<$Res, $Val extends PaymentIntent>
     Object? nextAction = freezed,
     Object? shipping = freezed,
     Object? mandateData = freezed,
+    Object? latestCharge = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -200,6 +207,10 @@ class _$PaymentIntentCopyWithImpl<$Res, $Val extends PaymentIntent>
           ? _value.mandateData
           : mandateData // ignore: cast_nullable_to_non_nullable
               as MandateData?,
+      latestCharge: freezed == latestCharge
+          ? _value.latestCharge
+          : latestCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -264,7 +275,8 @@ abstract class _$$PaymentIntentImplCopyWith<$Res>
       String? canceledAt,
       NextAction? nextAction,
       ShippingDetails? shipping,
-      MandateData? mandateData});
+      MandateData? mandateData,
+      String? latestCharge});
 
   @override
   $NextActionCopyWith<$Res>? get nextAction;
@@ -301,6 +313,7 @@ class __$$PaymentIntentImplCopyWithImpl<$Res>
     Object? nextAction = freezed,
     Object? shipping = freezed,
     Object? mandateData = freezed,
+    Object? latestCharge = freezed,
   }) {
     return _then(_$PaymentIntentImpl(
       id: null == id
@@ -367,6 +380,10 @@ class __$$PaymentIntentImplCopyWithImpl<$Res>
           ? _value.mandateData
           : mandateData // ignore: cast_nullable_to_non_nullable
               as MandateData?,
+      latestCharge: freezed == latestCharge
+          ? _value.latestCharge
+          : latestCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -391,7 +408,8 @@ class _$PaymentIntentImpl implements _PaymentIntent {
       this.canceledAt,
       this.nextAction,
       this.shipping,
-      this.mandateData});
+      this.mandateData,
+      this.latestCharge});
 
   factory _$PaymentIntentImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentIntentImplFromJson(json);
@@ -461,13 +479,19 @@ class _$PaymentIntentImpl implements _PaymentIntent {
   @override
   final MandateData? mandateData;
 
+  /// The latest charge created by this payment intent.
+  ///
+  /// This field is only available on stripe web.
+  @override
+  final String? latestCharge;
+
   @override
   String toString() {
-    return 'PaymentIntent(id: $id, amount: $amount, created: $created, currency: $currency, status: $status, clientSecret: $clientSecret, livemode: $livemode, captureMethod: $captureMethod, confirmationMethod: $confirmationMethod, paymentMethodId: $paymentMethodId, description: $description, receiptEmail: $receiptEmail, canceledAt: $canceledAt, nextAction: $nextAction, shipping: $shipping, mandateData: $mandateData)';
+    return 'PaymentIntent(id: $id, amount: $amount, created: $created, currency: $currency, status: $status, clientSecret: $clientSecret, livemode: $livemode, captureMethod: $captureMethod, confirmationMethod: $confirmationMethod, paymentMethodId: $paymentMethodId, description: $description, receiptEmail: $receiptEmail, canceledAt: $canceledAt, nextAction: $nextAction, shipping: $shipping, mandateData: $mandateData, latestCharge: $latestCharge)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentIntentImpl &&
@@ -498,7 +522,9 @@ class _$PaymentIntentImpl implements _PaymentIntent {
             (identical(other.shipping, shipping) ||
                 other.shipping == shipping) &&
             (identical(other.mandateData, mandateData) ||
-                other.mandateData == mandateData));
+                other.mandateData == mandateData) &&
+            (identical(other.latestCharge, latestCharge) ||
+                other.latestCharge == latestCharge));
   }
 
   @JsonKey(ignore: true)
@@ -520,7 +546,8 @@ class _$PaymentIntentImpl implements _PaymentIntent {
       canceledAt,
       nextAction,
       shipping,
-      mandateData);
+      mandateData,
+      latestCharge);
 
   @JsonKey(ignore: true)
   @override
@@ -553,7 +580,8 @@ abstract class _PaymentIntent implements PaymentIntent {
       final String? canceledAt,
       final NextAction? nextAction,
       final ShippingDetails? shipping,
-      final MandateData? mandateData}) = _$PaymentIntentImpl;
+      final MandateData? mandateData,
+      final String? latestCharge}) = _$PaymentIntentImpl;
 
   factory _PaymentIntent.fromJson(Map<String, dynamic> json) =
       _$PaymentIntentImpl.fromJson;
@@ -623,6 +651,12 @@ abstract class _PaymentIntent implements PaymentIntent {
 
   /// Mandata data for this paymentintent.
   MandateData? get mandateData;
+  @override
+
+  /// The latest charge created by this payment intent.
+  ///
+  /// This field is only available on stripe web.
+  String? get latestCharge;
   @override
   @JsonKey(ignore: true)
   _$$PaymentIntentImplCopyWith<_$PaymentIntentImpl> get copyWith =>
@@ -827,7 +861,7 @@ class _$ShippingDetailsImpl implements _ShippingDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShippingDetailsImpl &&

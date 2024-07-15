@@ -69,7 +69,7 @@ class PaymentMethod with _$PaymentMethod {
 /// Billing information associated with the payment method.
 @freezed
 class BillingDetails with _$BillingDetails {
-  @JsonSerializable()
+  @JsonSerializable(explicitToJson: true)
   const factory BillingDetails({
     /// Email address.
     String? email,
@@ -296,7 +296,7 @@ enum UsBankAccountType {
 enum PaymentMethodType {
   AfterpayClearpay,
   Card,
-  CashAppPay,
+  CashApp,
   Alipay,
   Grabpay,
   Ideal,
@@ -601,6 +601,9 @@ class PaymentMethodDataCardFromMethod with _$PaymentMethodDataCardFromMethod {
 class PaymentMethodDataIdeal with _$PaymentMethodDataIdeal {
   @JsonSerializable(explicitToJson: true)
   const factory PaymentMethodDataIdeal({
+    /// The bank identifier code of the bank.
+    String? bankIdentifierCode,
+
     /// The name of bank.
     String? bankName,
 

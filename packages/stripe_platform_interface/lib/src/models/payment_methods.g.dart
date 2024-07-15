@@ -59,7 +59,7 @@ Map<String, dynamic> _$$BillingDetailsImplToJson(
         _$BillingDetailsImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
-      'address': instance.address,
+      'address': instance.address?.toJson(),
       'phone': instance.phone,
       'name': instance.name,
     };
@@ -95,8 +95,8 @@ Map<String, dynamic> _$$BacsDebitImplToJson(_$BacsDebitImpl instance) =>
 _$CardImpl _$$CardImplFromJson(Map<String, dynamic> json) => _$CardImpl(
       brand: json['brand'] as String?,
       country: json['country'] as String?,
-      expYear: json['expYear'] as int?,
-      expMonth: json['expMonth'] as int?,
+      expYear: (json['expYear'] as num?)?.toInt(),
+      expMonth: (json['expMonth'] as num?)?.toInt(),
       funding: json['funding'] as String?,
       last4: json['last4'] as String?,
       preferredNetwork: json['preferredNetwork'] as String?,
@@ -637,6 +637,7 @@ Map<String, dynamic> _$$PaymentMethodDataCardFromMethodImplToJson(
 _$PaymentMethodDataIdealImpl _$$PaymentMethodDataIdealImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentMethodDataIdealImpl(
+      bankIdentifierCode: json['bankIdentifierCode'] as String?,
       bankName: json['bankName'] as String?,
       billingDetails: json['billingDetails'] == null
           ? null
@@ -654,6 +655,7 @@ _$PaymentMethodDataIdealImpl _$$PaymentMethodDataIdealImplFromJson(
 Map<String, dynamic> _$$PaymentMethodDataIdealImplToJson(
         _$PaymentMethodDataIdealImpl instance) =>
     <String, dynamic>{
+      'bankIdentifierCode': instance.bankIdentifierCode,
       'bankName': instance.bankName,
       'billingDetails': instance.billingDetails?.toJson(),
       'shippingDetails': instance.shippingDetails?.toJson(),

@@ -6,6 +6,7 @@ env.config({ path: './.env' });
 
 import bodyParser from 'body-parser';
 import express from 'express';
+import cors from 'cors';
 
 import Stripe from 'stripe';
 import { generateResponse } from './utils';
@@ -15,6 +16,8 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY || '';
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
 const app = express();
+
+app.use(cors());
 
 app.use(
   (
@@ -554,6 +557,7 @@ app.post('/payment-sheet', async (_, res) => {
     // Edit the following to support different payment methods in your PaymentSheet
     // Note: some payment methods have different requirements: https://stripe.com/docs/payments/payment-methods/integration-options
     payment_method_types: [
+      'card',
       // 'ideal',
       // 'sepa_debit',
       // 'sofort',
@@ -562,7 +566,7 @@ app.post('/payment-sheet', async (_, res) => {
       // 'giropay',
       // 'eps',
       // 'afterpay_clearpay',
-      'klarna',
+      // 'klarna',
       // 'us_bank_account',
     ],
   });

@@ -1,3 +1,22 @@
+## 10.1.0
+
+**Features**
+- Sync with Stripe [0.37.0](https://github.com/stripe/stripe-react-native/releases/tag/v0.37.0)
+
+**Fixes**
+- #1608 prevent paymentintent crash.
+- #1465 unknow result.
+
+## 10.0.0
+
+**Breaking changes**
+Rename `ApplePayShippingContact` to `PlatformpayshippingContact`.
+
+**Fixes**
+- #1465 Handle nullable result coming from Stripe sdk.
+- #1522 add bankidentifiercode to ideal paymentdata.
+- #1560 fix payment sheet crash when pressing back button.
+
 ## 9.6.0
 Sync with Stripe React Native v0.34 and v0.35:
 
