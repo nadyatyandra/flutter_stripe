@@ -9,7 +9,7 @@ extension SetupIntentExtension on js.SetupIntent {
       status: status.toString(),
       clientSecret: clientSecret,
       livemode: livemode,
-      paymentMethodId: paymentMethod!,
+      paymentMethodId: paymentMethod ?? '',
       description: description,
       // LastPaymentError? lastPaymentError,
       usage: '', paymentMethodTypes: [],
