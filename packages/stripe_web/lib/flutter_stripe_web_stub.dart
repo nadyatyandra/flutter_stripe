@@ -8,6 +8,8 @@ class WebStripe extends StripePlatform {
     throw UnimplementedError();
   }
 
+  static final WebStripe instance = WebStripe();
+
   @override
   Future<AddToWalletResult> canAddToWallet(String last4) {
     // TODO: implement canAddToWallet
