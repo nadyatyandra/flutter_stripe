@@ -32,4 +32,4 @@ flutter:
     platforms:
       web:
         pluginClass: WebStripe
-        fileName: flutter_stripe_web.dart
+        fileName: flutter_stripe.dart
