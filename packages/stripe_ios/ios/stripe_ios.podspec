@@ -2,7 +2,6 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
 # Run `pod lib lint stripe_ios.podspec' to validate before publishing.
 #
-stripe_version = '~> 23.18.0'
 Pod::Spec.new do |s|
   s.name             = 'stripe_ios'
   s.version          = '0.0.1'
@@ -16,12 +15,12 @@ A new flutter plugin project.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'Stripe', stripe_version
-  s.dependency 'StripePaymentSheet', stripe_version
-  s.dependency 'StripePayments', stripe_version
-  s.dependency 'StripePaymentsUI', stripe_version
-  s.dependency 'StripeApplePay', stripe_version
-  s.dependency 'StripeFinancialConnections', stripe_version
+  s.dependency 'Stripe', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
+  s.dependency 'StripePaymentSheet', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
+  s.dependency 'StripePayments', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
+  s.dependency 'StripePaymentsUI', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
+  s.dependency 'StripeApplePay', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
+  s.dependency 'StripeFinancialConnections', :git => 'https://github.com/nadyatyandra/stripe-ios.git', :branch => 'master'
   s.platform = :ios, '13.0'
 
   # Flutter.framework does not contain a i386 slice.
